@@ -23,6 +23,7 @@ class Actor:
                 "https://w3id.org/security/v1",
             ],
             "id": self.ap_id,
+            "inbox": f"https://{actor.domain}/inbox",
             "preferredUsername": actor.name,
             "publicKey": {
                 "id": f"{actor.ap_id}#main-key",
@@ -57,6 +58,11 @@ actor = init_actor()
 @app.route("/", methods=["GET"])
 def hello_world():
     return "Hello World!"
+
+
+@app.route("/inbox", methods=["GET"])
+def inbox():
+    return "Success"
 
 
 @app.route("/.well-known/webfinger", methods=["GET"])
